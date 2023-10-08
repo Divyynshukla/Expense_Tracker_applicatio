@@ -1,12 +1,13 @@
-const express = require('express')
+const express = require('express');
 const cors = require('cors');
-const { db } = require('./db/db');
-const {readdirSync} = require('fs')
-const app = express()
+const {readdirSync} = require('fs');
+const app = express();
+const {db} = require("./db/db");
+//const db  = require("./db");
 
 require('dotenv').config()
 
-const PORT = process.env.PORT
+const PORT = process.env.PORT;
 
 //middlewares
 app.use(express.json())
@@ -17,9 +18,12 @@ readdirSync('./routes').map((route) => app.use('/api/v1', require('./routes/' + 
 
 const server = () => {
     db()
-    app.listen(PORT, () => {
-        console.log('listening to port:', PORT)
+    app.listen(PORT,()=>
+    {
+       console.log('listening to port:',PORT);
     })
-}
+      
+    }
+
 
 server()
